@@ -1,24 +1,22 @@
 from heapq import heapify, heappush, heappop
 
-with open("day1.txt") as file:
+with open("./Inputs/Day1.txt") as file:
     leftHandMHeap = []
     rightHandMHeap = []
     
-    
-    
     for count, line in enumerate(file):
         string = line.split(",")
-        leftHandMHeap.append((int(string[0]), count))
-        rightHandMHeap.append((int(string[1]), count))
+        leftHandMHeap.append(int(string[0]))
+        rightHandMHeap.append(int(string[1]))
         
     heapify(leftHandMHeap)
     heapify(rightHandMHeap)
     
     distances = []
     
-    for item in leftHandMHeap:
-        leftIx = heappop(leftHandMHeap)[1]
-        rightIx = heappop(rightHandMHeap)[1]
+    for i in range(len(leftHandMHeap)):
+        leftIx = heappop(leftHandMHeap)
+        rightIx = heappop(rightHandMHeap)
         distance = abs(leftIx-rightIx)
         distances.append(distance)
 
@@ -27,4 +25,4 @@ with open("day1.txt") as file:
     for i in distances:
         sum += i
     
-    print(sum , distances)
+    print(sum)
